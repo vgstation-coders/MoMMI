@@ -5,7 +5,7 @@ import pickle
 from typing import Dict, Any, TypeVar, Optional, Union, cast, List, Set
 from pathlib import Path
 import aiofiles
-from discord import Server, Channel, Member, Role
+import discord
 from MoMMI.types import SnowflakeID, MIdentifier
 from MoMMI.master import MoMMI
 from MoMMI.module import MModule
@@ -22,7 +22,7 @@ class MServer(object):
     It's like a context for MoMMI.
     """
 
-    def __init__(self, server: Server, master: MoMMI) -> None:
+    def __init__(self, server: discord.Guild, master: MoMMI) -> None:
         # The TOML data from the config file, directly.
         self.config: Dict[str, Any] = {}
 
@@ -59,13 +59,13 @@ class MServer(object):
         return cast(str, self.get_server().name)
 
     @property
-    def discordpy_server(self) -> Server:
+    def discordpy_server(self) -> discord.Guild:
         """
         The Discord.py server instance used internally.
         """
         return self.get_server()
 
-    def get_discordpy_role(self, identifier: SnowflakeID) -> Role:
+    def get_discordpy_role(self, identifier: SnowflakeID) -> discord.Role:
         for role in self.discordpy_server.roles:
             if int(role.id) == identifier:
                 return role
@@ -115,10 +115,10 @@ class MServer(object):
 
         raise TypeError()
 
-    def get_server(self) -> Server:
-        return self.master.client.get_server(str(self.id))
+    def get_server(self) -> discord.Guild:
+        return self.master.client.get_guild(self.id)
 
-    def add_channel(self, channel: Channel) -> None:
+    def add_channel(self, channel: discord.TextChannel) -> None:
         name = None
         for k, v in self.config.get("channels", {}).items():
             if int(v) == int(channel.id):
@@ -137,7 +137,7 @@ class MServer(object):
                 self.channels_name[k] = self.channels[sid]
                 self.channels[sid].internal_name = k
 
-    def remove_channel(self, channel: Channel) -> None:
+    def remove_channel(self, channel: discord.TextChannel) -> None:
         channel = self.get_channel(SnowflakeID(channel.id))
         if channel.internal_name:
             del self.channels_name[channel.internal_name]
@@ -181,5 +181,5 @@ class MServer(object):
     def set_cache(self, name: str, value: Any) -> None:
         self.cache[name] = value
 
-    def get_member(self, snowflake: SnowflakeID) -> Member:
+    def get_member(self, snowflake: SnowflakeID) -> discord.Member:
         return self.get_server().get_member(str(snowflake))

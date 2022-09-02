@@ -110,7 +110,7 @@ class MoMMI(object):
 
         tasks = []
         LOGGER.info("$BLUEConnected servers:")
-        for server in self.client.servers:
+        for server in self.client.guilds:
             LOGGER.info(f"  $WHITE{server.name}")
             tasks.append(self.add_server(server))
 
@@ -274,7 +274,7 @@ class MoMMI(object):
         if message.author.id == self.client.user.id and message.content.startswith("\u200B**IRC:**"):
             return
 
-        server = self.get_server(SnowflakeID(message.server.id))
+        server = self.get_server(SnowflakeID(message.guild.id))
         channel = server.get_channel(SnowflakeID(message.channel.id))
 
         logmsg = f"[{utcnow().isoformat()}]({server.name}/{message.channel.name}) {message.author.name}#{message.author.discriminator}: {message.content}"
@@ -295,7 +295,7 @@ class MoMMI(object):
         if not self.initialized or self.shutting_down:
             return
 
-        server = self.get_server(SnowflakeID(reaction.message.server.id))
+        server = self.get_server(SnowflakeID(reaction.message.guild.id))
         channel = server.get_channel(SnowflakeID(reaction.message.channel.id))
 
         for command in channel.iter_handlers(MReactionCommand):
@@ -307,7 +307,7 @@ class MoMMI(object):
         if not self.initialized or self.shutting_down:
             return
 
-        server = self.get_server(SnowflakeID(message.server.id))
+        server = self.get_server(SnowflakeID(message.guild.id))
         channel = server.get_channel(SnowflakeID(message.channel.id))
 
         for command in channel.iter_handlers(MDeleteCommand):
@@ -323,11 +323,11 @@ class MoMMI(object):
 
         raise TypeError("Server ID must be str or SnowflakeID")
 
-    async def on_server_join(self, server: discord.Server) -> None:
+    async def on_server_join(self, server: discord.Guild) -> None:
         LOGGER.info(f"Joined new server {server.name}.")
         await self.add_server(server)
 
-    async def add_server(self, server: discord.Server) -> None:
+    async def add_server(self, server: discord.Guild) -> None:
         from MoMMI.server import MServer
         if self.storagedir is None:
             raise RuntimeError("No storage dir specified!")
@@ -365,11 +365,11 @@ class MoMMI(object):
                 f"Data storage directory for {new.name} exists but is not a file!")
         await new.load_data_storages(data_path)
 
-    async def on_server_remove(self, server: discord.Server) -> None:
+    async def on_server_remove(self, server: discord.Guild) -> None:
         LOGGER.info(f"Left server {server.name}.")
         await self.remove_server(server)
 
-    async def remove_server(self, server: discord.Server) -> None:
+    async def remove_server(self, server: discord.Guild) -> None:
         LOGGER.debug(f"Removing server {server.name}")
         # TODO: this probably won't GC correctly, due to circular references.
         # So technically this memleaks, but I don't give a damn because
@@ -410,7 +410,7 @@ class MoMMI(object):
 
         LOGGER.info("Goodbye.")
 
-        await self.client.logout()
+        await self.client.close()
 
     def handle_signal(self) -> None:
         asyncio.ensure_future(self.shutdown(), loop=self.client.loop)
@@ -429,22 +429,22 @@ class MoMMI(object):
         for server in self.servers.values():
             yield from server.channels.values()
 
-    async def on_channel_delete(self, channel: discord.Channel) -> None:
+    async def on_channel_delete(self, channel: discord.TextChannel) -> None:
         if channel.is_private:
             return
 
-        server_id = SnowflakeID(channel.server.id)
+        server_id = SnowflakeID(channel.guild.id)
         mserver = self.get_server(server_id)
         mserver.remove_channel(channel)
 
-    async def on_channel_create(self, channel: discord.Channel) -> None:
+    async def on_channel_create(self, channel: discord.TextChannel) -> None:
         # TODO: support for PMs.
         # Probably longs ways off shit.
         LOGGER.debug(f"Got new channel! {channel.is_private}, {channel.id}")
         if channel.is_private:
             return
 
-        server_id = SnowflakeID(channel.server.id)
+        server_id = SnowflakeID(channel.guild.id)
         mserver = self.get_server(server_id)
         mserver.add_channel(channel)
 
