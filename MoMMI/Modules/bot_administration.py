@@ -13,10 +13,10 @@ async def reload(channel: MChannel, match: Match, message: Message) -> None:
     errors = await master.reload_modules()
 
     if errors:
-        await master.client.add_reaction(message, "🤒")
+        await message.add_reaction("🤒")
 
     else:
-        await master.client.add_reaction(message, "👌")
+        await message.add_reaction("👌")
 
 
 @command("modules", "modules", roles=[MRoleType.OWNER])

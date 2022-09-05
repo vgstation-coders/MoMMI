@@ -28,7 +28,7 @@ async def pickle_load(filename: os.PathLike) -> Any:
 
 
 async def add_reaction(message: Message, reaction: str) -> None:
-    await master.client.add_reaction(message, reaction)
+    await message.add_reaction(reaction)
 
 
 async def remove_reaction(message: Message, reaction: str) -> None:
