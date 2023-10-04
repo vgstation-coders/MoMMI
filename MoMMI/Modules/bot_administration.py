@@ -41,13 +41,13 @@ async def shutdown_command(channel: MChannel, match: Match, message: Message) ->
 
 @command("name", r"name\s+(.+)", roles=[MRoleType.OWNER])
 async def name_command(channel: MChannel, match: Match, message: Message) -> None:
-    await master.client.edit_profile(username=match.group(1))
+    await master.client.user.edit(username=match.group(1))
 
 
 @command("nick", r"nick\s+(.+)", roles=[MRoleType.OWNER])
 async def nick_command(channel: MChannel, match: Match, message: Message) -> None:
-    member = message.server.get_member(master.client.user.id)
-    await master.client.change_nickname(member, match.group(1))
+    member = message.guild.get_member(master.client.user.id)
+    await member.edit(nick = match.group(1))
 
 
 @command("avatar", r"avatar", roles=[MRoleType.OWNER])
@@ -57,7 +57,7 @@ async def avatar_command(channel: MChannel, match: Match, message: Message) -> N
         async with session.get(attachment) as request:
             data = await request.read()
 
-    await master.client.edit_profile(avatar=data)
+    await master.client.user.edit(avatar=data)
 
 
 @command("save", r"save", roles=[MRoleType.OWNER])

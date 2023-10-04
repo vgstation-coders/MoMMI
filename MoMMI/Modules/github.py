@@ -346,12 +346,13 @@ async def issue_command(channel: MChannel, match: Match, message: Message) -> No
     messages = 0
 
     for repo_config in cfg:
+        logger.debug(repo_config)
         repo = repo_config["repo"]
 
         for match in REG_ISSUE.finditer(message.content):
-            #logger.debug("did match")
+            logger.debug("did match")
             prefix = match.group(1)
-
+            logger.debug("testcunt")
             if not is_repo_valid_for_command(repo_config, channel, prefix):
                 continue
 
