@@ -112,6 +112,7 @@ class commloop(object):
     async def route(self, message: Dict[str, Any]) -> None:
         # print(message)
         # Do global comm events first.
+        print(message)
         for globalhandler in self.master.iter_global_handlers(MGlobalCommEvent):
             try:
                 await globalhandler.execute(message["type"], message["cont"], message["meta"])

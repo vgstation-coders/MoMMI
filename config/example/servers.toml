@@ -3,19 +3,55 @@
 # Each server is an entry into the servers array.
 [[servers]]
 # Snowflake ID of this server.
-id = 0
+id = 692441846739238952
 # Internal name used for this server for readability and whatever.
-name = "unknown"
+name = "testserver"
 kill_phrase = "All your bases are belong to us"
+url = "127.0.0.1"
+key = ""
+type = "ss13"
 
 # Servers can have "shortcuts" assigned to them for channels.
 # These will be resolved in say nudge routes.
 [servers.channels]
-channel1 = 123
-channel2 = 456
+server_status = 692441846739238955
+ick = 1159774250845081630
 
 [servers.roles]
-ADMIN = 0
-CODER = 0
+ADMIN = 692441846739238952
+CODER = 1159774198001045516
 
+[servers.GutterStation.modules.serverstatus]
+type = "ss13"
+
+[servers.default.modules.serverstatus]
+type = "ss13"
+[servers.modules.serverstatus]
+type = "ss13"
+default = "vg"
+[servers.modules.serverstatus.vg]
+type = "ss13"
+address = "game.ss13.moe"
+port = "7777"
+admindata = "what?"
 # [servers.unknown.modules.xxx] for module overrides.
+
+[servers.modules.restart.srv]
+[servers.modules.restart.roles]
+ADMIN = 692441846739238952
+CODER = 1159774198001045516
+OWNER = 1014589939377262613
+[servers.modules.restart.srv.vg]
+
+[servers.modules.based]
+enabled = true
+[servers.modules.wyci]
+enabled = true
+[[servers.modules.github.repos]]
+gutter = []
+repo = "toomykins/vgstation13"
+repo_prefix = ""
+prefix_whitelist = ["server_status","ick"]
+repo_prefix_required = false
+branch = "Bleeding-Edge"
+

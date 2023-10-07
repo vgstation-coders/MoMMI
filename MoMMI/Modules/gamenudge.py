@@ -38,6 +38,7 @@ async def load(loop: asyncio.AbstractEventLoop) -> None:
 @comm_event("gamenudge")
 async def gamenudge(channel: MChannel, message: Any, meta: str) -> None:
     logger.debug(json.dumps(message))
+    logger.debug("cum")
     try:
         password = message["pass"]
         content = message["content"]

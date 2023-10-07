@@ -1,16 +1,25 @@
 # This config file is for global configuration settings.
 
 [bot]
-token = ""
-owner = 0
+token = "DISCORDBOTTOKEN"
+owner = 168101132726435841
+
+[nudge]
+password = "secret"
+
 
 # Commloop settings for communication with the MoMMI.
 [commloop]
 address = "localhost"
 port = 1679
-password = ""
+password = "COMMLOOPPASSWORD"
+
 
 # Settings for where to route commloop messages based on message type
 # and other identifying info such as repo in github webhooks.
 [commloop.route.github]
 "PJB3005/MoMMI" = ["unknown"]
+
+[commloop.route.gamenudge]
+type="gamenudge"
+"server_status" = [[692441846739238952, 692441846739238955]]

@@ -1,11 +1,11 @@
 [development]
 address = "0.0.0.0"
 port = 40000
-commloop-address = "127.0.0.1:1680"
-commloop-password = "foobar"
-github-key = "womp"
+commloop-address = "127.0.0.1:1679"
+commloop-password = ""
+github-key = ""
 changelog-delay = 5
-repo-path = "huh"
+repo-path = "toomykins/vgstation13"
 
 [production]
 commloop-address = "127.0.0.1:1679"
