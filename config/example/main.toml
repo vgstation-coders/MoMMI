@@ -22,4 +22,4 @@ password = "COMMLOOPPASSWORD"
 
 [commloop.route.gamenudge]
 type="gamenudge"
-"server_status" = [[692441846739238952, 692441846739238955]]
+"server_status" = [[692441846739238952, 692441846739238955]] #server id, channel id
