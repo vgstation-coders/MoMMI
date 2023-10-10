@@ -1,6 +1,6 @@
 import logging
 from typing import TYPE_CHECKING, Any, Optional, cast, Type, Iterable, TypeVar
-from discord import Channel, Role, Member, PermissionOverwrite
+import discord
 from MoMMI.types import SnowflakeID
 from MoMMI.config import get_nested_dict_value, ConfigError
 from MoMMI.role import MRoleType
@@ -19,14 +19,14 @@ class MChannel(object):
     if TYPE_CHECKING:
         from MoMMI.server import MServer
 
-    def __init__(self, server: "MServer", channel: Channel, name: Optional[str]) -> None:
+    def __init__(self, server: "MServer", channel: discord.TextChannel, name: Optional[str]) -> None:
         from MoMMI.server import MServer
         self.id: SnowflakeID = SnowflakeID(channel.id)
         self.internal_name: Optional[str] = name
         self.server: MServer = server
 
     @property
-    def discordpy_channel(self) -> Channel:
+    def discordpy_channel(self) -> discord.TextChannel:
         return self.get_channel()
 
     @property
@@ -43,19 +43,20 @@ class MChannel(object):
 
         return False
 
-    def get_channel(self) -> Channel:
+    def get_channel(self) -> discord.TextChannel:
         """
         Gets our discord.Channel.
         The channel instance is not permanently stored for reasons.
         """
-        return self.server.master.client.get_channel(str(self.id))
+        return self.server.master.client.get_channel((self.id))
 
     async def send(self, message: str = "", **kwargs: Any) -> None:
         """
         Send a message on this channel.
         """
         channel = self.get_channel()
-        await self.server.master.client.send_message(channel, message, **kwargs)
+        #await self.server.master.client.send_message(channel, message, **kwargs)
+        await channel.send(message, **kwargs)
 
     def module_config(self, key: str, default: Optional[T] = None) -> T:
         """
@@ -76,7 +77,7 @@ class MChannel(object):
 
         return default
 
-    def isrole(self, member: Member, rolename: MRoleType) -> bool:
+    def isrole(self, member: discord.Member, rolename: MRoleType) -> bool:
         owner_id: int = self.main_config("bot.owner")
         if int(member.id) == owner_id:
             return True
@@ -120,7 +121,7 @@ class MChannel(object):
     def set_global_cache(self, name: str, value: Any) -> None:
         self.server.master.cache[name] = value
 
-    def get_role_snowflake(self, snowflake: SnowflakeID) -> Role:
+    def get_role_snowflake(self, snowflake: SnowflakeID) -> discord.Role:
         for role in self.server.get_server().roles:
             if SnowflakeID(role.id) == snowflake:
                 return role
@@ -159,8 +160,8 @@ class MChannel(object):
         raise ConfigError(f"Unable to find role {snowflake}!")
     """
 
-    def get_member_named(self, name: str) -> Member:
+    def get_member_named(self, name: str) -> discord.Member:
         return self.server.get_server().get_member_named(name)
 
-    def get_member(self, snowflake: SnowflakeID) -> Member:
+    def get_member(self, snowflake: SnowflakeID) -> discord.Member:
         return self.server.get_server().get_member(str(snowflake))

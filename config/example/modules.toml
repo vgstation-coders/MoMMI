@@ -1,4 +1,15 @@
 # For global module specific settings.
 
 [github]
-token = ""
+token = "" #github token
+
+[modules.serverstatus]
+default = "default"
+
+[serverstatus]
+default = "default"
+servername = "default"
+type = "ss13"
+
+[nudge]
+password = "secret"#nudge password

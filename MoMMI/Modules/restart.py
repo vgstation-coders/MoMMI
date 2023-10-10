@@ -30,6 +30,9 @@ async def serverstatus_command(channel: MChannel, match: Match, message: Message
         return;
 
     for r in message.author.roles:
+        #print(r.id)
+        #print(roles)
+        #print( message.author.roles)
         if r.id in roles:
             break
 
@@ -47,7 +50,7 @@ async def serverstatus_command(channel: MChannel, match: Match, message: Message
 
 
     server_config = config[servername]
-    await channel.server.master.client.add_reaction(message, "⌛")
+    await message.add_reaction("⌛")
 
     try:
         baseUrl = server_config["url"]

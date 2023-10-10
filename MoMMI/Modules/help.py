@@ -12,7 +12,7 @@ callback_type = Callable[[MChannel, Message], Awaitable[str]]
 async def help_command(channel: MChannel, match: Match, message: Message) -> None:
     if match[1] is None:
         msg = """Yes hello I'm your ~~un~~friendly neighbourhood MoMMI.
-Send @MoMMIv2 help <topic> for more info.
+Send @Milquetoast Mommi help <topic> for more info.
 Available topics are: """
         msg += ", ".join((h.topic for h in channel.iter_handlers(HelpHandler)))
 
@@ -22,7 +22,7 @@ Available topics are: """
     found: HelpHandler
 
     for handler in channel.iter_handlers(HelpHandler):
-        print(handler.name)
+        #print(handler.name)
         if handler.topic == match[1]:
             found = handler
             break

@@ -3,19 +3,68 @@
 # Each server is an entry into the servers array.
 [[servers]]
 # Snowflake ID of this server.
-id = 0
+id = 692441846739238952
 # Internal name used for this server for readability and whatever.
-name = "unknown"
-kill_phrase = "All your bases are belong to us"
+name = "testserver"
+url = "127.0.0.1"
+type = "ss13"
 
 # Servers can have "shortcuts" assigned to them for channels.
 # These will be resolved in say nudge routes.
 [servers.channels]
-channel1 = 123
-channel2 = 456
+server_status = 692441846739238955
+ick = 1160976569435688970
+from = 1160358732396498954
+to = 1160358717406052493
 
 [servers.roles]
-ADMIN = 0
-CODER = 0
+ADMIN = 692441846739238952
+CODER = 1159774198001045516
+OWNER = 1160346812180348958
 
+[servers.modules.serverstatus]
+type = "ss13"
+default = "vg"
+[servers.modules.serverstatus.vg]
+type = "ss13"
+address = "game.ss13.moe"
+port = "7777"
+admindata = "what?"
 # [servers.unknown.modules.xxx] for module overrides.
+
+[servers.modules.restart]
+roles = [692441846739238952]
+
+[servers.modules.restart.srv.vg]
+#unknown values
+#url = 1
+#key =2 
+#token = 3
+
+[servers.modules]
+mirror = [{
+	from = "from",
+	to = "https://discord.com/api/webhooks/1161130117385424959/1Cn0gP[[[[[[[[[[[[[[secret]]]]]]]]]]]]]]]]]P14wJ",
+	delay=0
+}]
+
+[servers.modules.gamenudge]
+kill_phrase = "cunt"
+kill_channel = "ick"
+
+[servers.modules.gamenudge.ping]
+ick = 1159774163859427358  # @actually plays the game
+server_status = 1159774163859427358  # @actually plays the game
+adminhelp = 1160346812180348958 # @server admin
+
+[servers.modules.based]
+enabled = true
+[servers.modules.wyci]
+enabled = true
+[[servers.modules.github.repos]]
+gutter = []
+repo = "toomykins/vgstation13"
+repo_prefix = ""
+prefix_whitelist = ["server_status","ick"]
+repo_prefix_required = false
+branch = "Bleeding-Edge"

@@ -37,7 +37,6 @@ async def load(loop: asyncio.AbstractEventLoop) -> None:
 
 @comm_event("gamenudge")
 async def gamenudge(channel: MChannel, message: Any, meta: str) -> None:
-    logger.debug(json.dumps(message))
     try:
         password = message["pass"]
         content = message["content"]
@@ -47,15 +46,17 @@ async def gamenudge(channel: MChannel, message: Any, meta: str) -> None:
         return
 
     if password != channel.module_config("nudge.password"):
+        #print("wrong password")
         return
 
     content = content.replace("@", "@\u200B") # Zero-Width space to prevent pings.
     orig_content = content
 
-    killphrase = channel.server_config("modules.gamenudge.kill_phrase", "")
+    killphrase = channel.server_config("modules.gamenudge.kill_phrase", "cunt")
 
     # This string closes the #ick channel for 5 minutes
     if killphrase and content == killphrase:
+        #print("KILL PHRASEEEE")
         kill_channel = channel.server.get_channel(channel.server_config("modules.gamenudge.kill_channel"))
         asyncio.ensure_future(thread_reminder(kill_channel))
         return

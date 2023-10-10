@@ -1,9 +1,13 @@
+cargo-features = ["rename-dependency"]
+
 [package]
 name = "webmommi"
 version = "0.1.0"
 authors = ["PJB3005 <pieterjan.briers+bot@gmail.com>"]
 publish = false
 edition = "2018"
+
+
 
 [profile.release]
 lto = true
@@ -22,3 +26,6 @@ yaml-rust = "0.4"
 git2 = "0.8"
 serde_yaml = "0.8"
 regex = "1"
+
+[features]
+#rename-dependency = ["bitflags"]

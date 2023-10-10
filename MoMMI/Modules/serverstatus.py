@@ -40,7 +40,7 @@ async def serverstatus_command(channel: MChannel, match: Match, message: Message
 
     server_config = config[servername]
     server_type = server_config.get("type", "ss13")
-    await channel.server.master.client.add_reaction(message, "⌛")
+    await message.add_reaction("⌛")
 
     try:
         if server_type == "ss13":

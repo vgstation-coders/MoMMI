@@ -69,8 +69,12 @@ async def check_reminders() -> None:
 async def send_reminder(reminder: REMINDER_TUPLE_TYPE) -> None:
     msg = reminder[1]
     sender = reminder[2]
-    avatar = reminder[3]
+    avatar = str(reminder[3])
     target = reminder[4]
+   # print(msg)
+    #print(sender)
+    #print(avatar)
+    #print(target)
     
     async with aiohttp.ClientSession() as session:
         await session.post(target, json={
@@ -104,8 +108,10 @@ async def mirrormirroronthewall(channel: MChannel, match: Match, message: Messag
 
     found = None
     for mirror_entry in channel.server_config("modules.mirror", []):
+        #print(mirror_entry)
         if channel.server.get_channel(mirror_entry["from"]) == channel:
             found = mirror_entry
+            
             break
     else:
         return
@@ -117,7 +123,8 @@ async def mirrormirroronthewall(channel: MChannel, match: Match, message: Messag
 
     reminder = (time, content, message.author.name, message.author.avatar_url, target, SnowflakeID(int(message.id)))
     heapq.heappush(heap, reminder)
-    await master.save_global_storage(REMINDER_QUEUE)
+    #await master.save_global_storage(REMINDER_QUEUE)
+
 
 
 async def hidemessage(channel: MChannel, msg: Message) -> bool:
