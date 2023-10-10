@@ -30,6 +30,9 @@ async def serverstatus_command(channel: MChannel, match: Match, message: Message
         return;
 
     for r in message.author.roles:
+        #print(r.id)
+        #print(roles)
+        #print( message.author.roles)
         if r.id in roles:
             break
 

@@ -22,7 +22,7 @@ Available topics are: """
     found: HelpHandler
 
     for handler in channel.iter_handlers(HelpHandler):
-        print(handler.name)
+        #print(handler.name)
         if handler.topic == match[1]:
             found = handler
             break

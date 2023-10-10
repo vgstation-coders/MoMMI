@@ -169,7 +169,7 @@ async def on_github_issues(channel: MChannel, message: Any, meta: str) -> None:
 
 
 async def on_github_pull_request(channel: MChannel, message: Any, meta: str) -> None:
-    logger.debug("fuck you python")
+   # logger.debug("fuck you python")
     action = message["action"]
     if action not in VALID_ISSUES_ACTIONS:
         return
@@ -346,13 +346,11 @@ async def issue_command(channel: MChannel, match: Match, message: Message) -> No
     messages = 0
 
     for repo_config in cfg:
-        logger.debug(repo_config)
+        #logger.debug(repo_config)
         repo = repo_config["repo"]
 
         for match in REG_ISSUE.finditer(message.content):
-            logger.debug("did match")
             prefix = match.group(1)
-            logger.debug("testcunt")
             if not is_repo_valid_for_command(repo_config, channel, prefix):
                 continue
 
@@ -610,7 +608,7 @@ async def get_github_object(url: str, *, params: Optional[Dict[str, str]] = None
     contents = await response.json()
     if "Last-Modified" in response.headers:
         cache[(url, paramstr)] = contents, response.headers["Last-Modified"], accept
-    print(contents)
+    #print(contents)
     return contents
 
 
@@ -839,7 +837,7 @@ def format_desc(desc: str) -> str:
     return res
 
 async def post_embedded_issue_or_pr(channel: MChannel, repo: str, issueid: int, sender_data: Optional[Dict[str, Any]] = None) -> None:
-    logger.debug(f"shitposting {issueid}")
+    #logger.debug(f"shitposting {issueid}")
     url = github_url(f"/repos/{repo}/issues/{issueid}")
     try:
         content: Dict[str, Any] = await get_github_object(url)

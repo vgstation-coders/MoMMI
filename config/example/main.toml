@@ -1,18 +1,17 @@
 # This config file is for global configuration settings.
 
 [bot]
-token = "DISCORDBOTTOKEN"
-owner = 168101132726435841
+token = "" # DISCORD TOKEN
+owner = 168101132726435841  # BOT OWNER
 
-[nudge]
-password = "secret"
+
 
 
 # Commloop settings for communication with the MoMMI.
 [commloop]
 address = "localhost"
 port = 1679
-password = "COMMLOOPPASSWORD"
+password = "secret" #COMMLOOP PASSWORD
 
 
 # Settings for where to route commloop messages based on message type
@@ -22,4 +21,6 @@ password = "COMMLOOPPASSWORD"
 
 [commloop.route.gamenudge]
 type="gamenudge"
-"server_status" = [[692441846739238952, 692441846739238955]] #server id, channel id
+"server_status" = [[692441846739238952, 1160976587844501586]] #server id, channel id
+"ick" =  [[692441846739238952, 1160976569435688970]]
+"adminhelp" =  [[692441846739238952, 1160976627078017175]]

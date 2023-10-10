@@ -259,7 +259,7 @@ class MoMMI(object):
             return
 
         if handler.name == "reminders":
-            print("EYSSSSS")
+            #print("EYSSSSS")
 
         module = self.get_module(handler.module)
         module.handlers[handler.name] = handler

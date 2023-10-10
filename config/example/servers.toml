@@ -6,26 +6,22 @@
 id = 692441846739238952
 # Internal name used for this server for readability and whatever.
 name = "testserver"
-kill_phrase = "All your bases are belong to us"
 url = "127.0.0.1"
-key = ""
 type = "ss13"
 
 # Servers can have "shortcuts" assigned to them for channels.
 # These will be resolved in say nudge routes.
 [servers.channels]
 server_status = 692441846739238955
-ick = 1159774250845081630
+ick = 1160976569435688970
+from = 1160358732396498954
+to = 1160358717406052493
 
 [servers.roles]
 ADMIN = 692441846739238952
 CODER = 1159774198001045516
+OWNER = 1160346812180348958
 
-[servers.GutterStation.modules.serverstatus]
-type = "ss13"
-
-[servers.default.modules.serverstatus]
-type = "ss13"
 [servers.modules.serverstatus]
 type = "ss13"
 default = "vg"
@@ -36,12 +32,30 @@ port = "7777"
 admindata = "what?"
 # [servers.unknown.modules.xxx] for module overrides.
 
-[servers.modules.restart.srv]
-[servers.modules.restart.roles]
-ADMIN = 692441846739238952
-CODER = 1159774198001045516
-OWNER = 1014589939377262613
+[servers.modules.restart]
+roles = [692441846739238952]
+
 [servers.modules.restart.srv.vg]
+#unknown values
+#url = 1
+#key =2 
+#token = 3
+
+[servers.modules]
+mirror = [{
+	from = "from",
+	to = "https://discord.com/api/webhooks/1161130117385424959/1Cn0gP[[[[[[[[[[[[[[secret]]]]]]]]]]]]]]]]]P14wJ",
+	delay=0
+}]
+
+[servers.modules.gamenudge]
+kill_phrase = "cunt"
+kill_channel = "ick"
+
+[servers.modules.gamenudge.ping]
+ick = 1159774163859427358  # @actually plays the game
+server_status = 1159774163859427358  # @actually plays the game
+adminhelp = 1160346812180348958 # @server admin
 
 [servers.modules.based]
 enabled = true
@@ -54,4 +68,3 @@ repo_prefix = ""
 prefix_whitelist = ["server_status","ick"]
 repo_prefix_required = false
 branch = "Bleeding-Edge"
-
