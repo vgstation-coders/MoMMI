@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rust-service:
+    build:
+      context: ./WebMoMMI  # Path to the folder containing the Rust Dockerfile
+    container_name: mommi-rust-app
+    network_mode: host
+
+  python-service:
+    build:
+      context: .  # Path to the folder containing the Python Dockerfile
+    container_name: mommi-app
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    network_mode: host
