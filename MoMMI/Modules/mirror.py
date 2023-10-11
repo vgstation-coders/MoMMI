@@ -95,7 +95,7 @@ async def mirrorhide_command(channel: MChannel, message: Message) -> None:
 async def mirrorhide_reaction_command(channel: MChannel, reaction: Reaction, member: User) -> None:
     if reaction.emoji != '🔇':
         return
-    
+    print("test")
     if await hidemessage(channel, reaction.message):
         await add_reaction(reaction.message, "✅")
 
@@ -137,7 +137,7 @@ async def hidemessage(channel: MChannel, msg: Message) -> bool:
 
     thelist = master.get_global_storage(REMINDER_QUEUE)
     for x in thelist:
-        if str(x[5]) == msg.id:
+        if str(x[5]) == str(msg.id):
             found = x
             break
 
