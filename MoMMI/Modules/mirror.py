@@ -95,7 +95,6 @@ async def mirrorhide_command(channel: MChannel, message: Message) -> None:
 async def mirrorhide_reaction_command(channel: MChannel, reaction: Reaction, member: User) -> None:
     if reaction.emoji != '🔇':
         return
-    print("test")
     if await hidemessage(channel, reaction.message):
         await add_reaction(reaction.message, "✅")
 
@@ -121,7 +120,7 @@ async def mirrormirroronthewall(channel: MChannel, match: Match, message: Messag
     heap: List[REMINDER_TUPLE_TYPE] = master.get_global_storage(REMINDER_QUEUE)
     time = utcnow() + mirror_delay
 
-    reminder = (time, content, message.author.name, message.author.avatar_url, target, SnowflakeID(int(message.id)))
+    reminder = (time, str(content), str(message.author.name), str(message.author.avatar_url), target, SnowflakeID(int(message.id)))
     heapq.heappush(heap, reminder)
     #await master.save_global_storage(REMINDER_QUEUE)
 
