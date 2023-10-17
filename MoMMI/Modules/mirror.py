@@ -103,7 +103,7 @@ async def mirrorhide_reaction_command(channel: MChannel, reaction: Reaction, mem
 async def mirrormirroronthewall(channel: MChannel, match: Match, message: Message) -> None:
     content = message.content
     for attachment in message.attachments:
-        content += " " + attachment["url"]
+        content += " " + str(attachment.url)
 
     found = None
     for mirror_entry in channel.server_config("modules.mirror", []):
