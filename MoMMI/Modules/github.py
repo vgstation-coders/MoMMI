@@ -859,21 +859,21 @@ async def post_embedded_issue_or_pr(channel: MChannel, repo: str, issueid: int, 
     emoji = ""
     if content["state"] == "open":
         if content.get("pull_request") is not None:
-            emoji = "<:propen:896496081960054827>"
+            emoji = "<:PRopened:1164281389651341312>"
         else:
-            emoji = "<:issueopened:896502343288381521>"
+            emoji = "<:ISSopened:1164281257618845767>"
         embed.color = COLOR_GITHUB_GREEN
 
     elif content.get("pull_request") is not None:
         if prcontent["merged"]:
-            emoji = "<:prmerge:896496082324979772>"
+            emoji = "<:PRmerged:1164281350925332600>"
             embed.color = COLOR_GITHUB_PURPLE
         else:
-            emoji = "<:prclosed:896496081976827986>"
+            emoji = "<:PRclosed:1164281316993409176>"
             embed.color = COLOR_GITHUB_RED
 
     else:
-        emoji = "<:issueclosed:896502343565185031>"
+        emoji = "<:ISSopened:1164281257618845767>"
         embed.color = COLOR_GITHUB_RED
 
     embed.title = emoji + " " + content["title"]
@@ -897,7 +897,7 @@ async def post_embedded_issue_or_pr(channel: MChannel, repo: str, issueid: int, 
     did_up = False
     if all_reactions.get("+1"):
         up = all_reactions["+1"]
-        embed.description += f"<:upvote:590257887826411590> {up}"
+        embed.description += f"<:arrow_up:> {up}"
         did_up = True
 
 
@@ -905,7 +905,7 @@ async def post_embedded_issue_or_pr(channel: MChannel, repo: str, issueid: int, 
         down = all_reactions["-1"]
         if did_up:
             embed.description += "   "
-        embed.description += f"<:downvote:590257835447812207> {down}"
+        embed.description += f"<:arrow_down:> {down}"
 
 
     if content.get("pull_request") is not None:
@@ -975,7 +975,7 @@ async def on_github_discussion(channel: MChannel, message: Any, meta: str) -> No
         action_name = "Created"
         show_body = True
 
-    embed.title = f"<:ghdiscussion:1082078543770554429> {action_name}: {discussion['title']}"
+    embed.title = f"<:ghdisc:1164283341055467520> {action_name}: {discussion['title']}"
     embed.url = discussion["html_url"]
     embed.set_footer(text=f"{repository['full_name']}#{discussion['number']} by {discussion['user']['login']}", icon_url=discussion["user"]["avatar_url"])
 
@@ -1005,7 +1005,7 @@ async def on_github_discussion_comment(channel: MChannel, message: Any, meta: st
                      ["html_url"], icon_url=message["sender"]["avatar_url"])
     embed.set_footer(
         text=f"{repo_name}#{discussion['number']} by {discussion['user']['login']}")
-    embed.title = f"<:ghdiscussion:1082078543770554429> Commented: {discussion['title']}"
+    embed.title = f"<:ghdisc:1164283341055467520> Commented: {discussion['title']}"
     embed.url = message["comment"]["html_url"]
 
     embed.description = format_desc(comment["body"])
