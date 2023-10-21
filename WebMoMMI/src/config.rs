@@ -12,6 +12,7 @@ pub struct MoMMIConfig {
     changelog_delay: u64,
     ssh_key: Option<PathBuf>,
     changelog_repo_name: Option<String>,
+    python_command: Option<String>,
 }
 
 impl MoMMIConfig {
@@ -74,6 +75,12 @@ impl MoMMIConfig {
             Err(x) => return Err(format!("Unable to fetch ssh key config: {}", x)),
         };
 
+        let python_command = match config.get_str("python-command") {
+            Ok(x) => Some(x.into()),
+            Err(ConfigError::Missing(_)) => None,
+            Err(x) => return Err(format!("Unable to fetch python command config: {}", x)),
+        };
+
         Ok(MoMMIConfig {
             commloop,
             github_key,
@@ -82,6 +89,7 @@ impl MoMMIConfig {
             ssh_key,
             changelog_delay,
             changelog_repo_name,
+            python_command,
         })
     }
 
@@ -109,6 +117,10 @@ impl MoMMIConfig {
         self.changelog_repo_path.is_some()
     }
 
+    pub fn has_python_command(&self) -> bool {
+        self.python_command.is_some()
+    }
+
     pub fn get_changelog_repo_path(&self) -> Option<&Path> {
         self.changelog_repo_path.as_ref().map(|p| &**p)
     }
@@ -127,5 +139,9 @@ impl MoMMIConfig {
 
     pub fn get_changelog_repo_name(&self) -> Option<&str> {
         self.changelog_repo_name.as_ref().map(|p| &**p)
+    }
+
+    pub fn get_python_command(&self) -> Option<&str> {
+        self.python_command.as_ref().map(String::as_ref)
     }
 }

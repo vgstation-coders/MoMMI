@@ -300,7 +300,8 @@ fn do_changelog(mut lock: MutexGuard<ChangelogManager>, config: Arc<MoMMIConfig>
     }
 
     // Run changelog script.
-    let status = Command::new("tools/changelog/ss13_genchangelog.py")
+    let status = Command::new(get_python_command())
+        .arg("tools/changelog/ss13_genchangelog.py")
         .arg("html/changelog.html")
         .arg("html/changelogs")
         .current_dir(&path)
