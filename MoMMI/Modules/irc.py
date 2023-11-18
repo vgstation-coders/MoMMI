@@ -189,7 +189,7 @@ async def unload(loop: asyncio.AbstractEventLoop) -> None:
 async def ircrelay(channel: MChannel, match: Match, message: Message) -> None:
     content = message.content
     for attachment in message.attachments:
-        content += " " + attachment["url"]
+        content += " " + str(attachment.url)
 
     if not content or content[0] == "\u200B":
         return

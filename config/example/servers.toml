@@ -8,7 +8,7 @@ id = 692441846739238952
 name = "testserver"
 url = "127.0.0.1"
 type = "ss13"
-
+resp = [{}]
 # Servers can have "shortcuts" assigned to them for channels.
 # These will be resolved in say nudge routes.
 [servers.channels]
@@ -21,6 +21,9 @@ to = 1160358717406052493
 ADMIN = 692441846739238952
 CODER = 1159774198001045516
 OWNER = 1160346812180348958
+
+[servers.modules.responses]
+role = 1160346812180348958
 
 [servers.modules.serverstatus]
 type = "ss13"

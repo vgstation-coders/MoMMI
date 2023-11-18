@@ -282,7 +282,7 @@ class MoMMI(object):
         if message.attachments:
             logmsg += "[Attachments]"
             for attach in message.attachments:
-                logmsg += " " + attach["url"]
+                logmsg += " " + (attach.url)
 
         CHAT_LOGGER.info(logmsg)
 

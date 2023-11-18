@@ -95,7 +95,6 @@ async def mirrorhide_command(channel: MChannel, message: Message) -> None:
 async def mirrorhide_reaction_command(channel: MChannel, reaction: Reaction, member: User) -> None:
     if reaction.emoji != '🔇':
         return
-    
     if await hidemessage(channel, reaction.message):
         await add_reaction(reaction.message, "✅")
 
@@ -104,7 +103,7 @@ async def mirrorhide_reaction_command(channel: MChannel, reaction: Reaction, mem
 async def mirrormirroronthewall(channel: MChannel, match: Match, message: Message) -> None:
     content = message.content
     for attachment in message.attachments:
-        content += " " + attachment["url"]
+        content += " " + str(attachment.url)
 
     found = None
     for mirror_entry in channel.server_config("modules.mirror", []):
@@ -121,7 +120,7 @@ async def mirrormirroronthewall(channel: MChannel, match: Match, message: Messag
     heap: List[REMINDER_TUPLE_TYPE] = master.get_global_storage(REMINDER_QUEUE)
     time = utcnow() + mirror_delay
 
-    reminder = (time, content, message.author.name, message.author.avatar_url, target, SnowflakeID(int(message.id)))
+    reminder = (time, str(content), str(message.author.name), str(message.author.avatar_url), target, SnowflakeID(int(message.id)))
     heapq.heappush(heap, reminder)
     #await master.save_global_storage(REMINDER_QUEUE)
 
@@ -137,7 +136,7 @@ async def hidemessage(channel: MChannel, msg: Message) -> bool:
 
     thelist = master.get_global_storage(REMINDER_QUEUE)
     for x in thelist:
-        if str(x[5]) == msg.id:
+        if str(x[5]) == str(msg.id):
             found = x
             break
 
