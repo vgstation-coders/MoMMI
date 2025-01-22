@@ -128,7 +128,7 @@ def utcnow() -> datetime:
 async def thread_reminder(channel: MChannel) -> None:
     minutes = 5
     # Send the message
-    await channel.send(f"**A round has ended.** You can discuss it at https://boards.4chan.org/vg/catalog#s=ss13g. This channel will be closed for {minutes} minutes.")
+    await channel.send(f"**A round has ended.** You can discuss it at https://boards.4chan.org/vm/catalog#s=ss13g. This channel will be closed for {minutes} minutes.")
     # And make it closed
     await channel.close()
     # For 5 minutes

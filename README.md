@@ -55,4 +55,6 @@ Some features might not work as expected:
 
 The IRC feature is currently unconfigured and untested.
 
+You might notice the Dockerfile. It is not used in practice as of writing. Please ignore it or fix it yourself.
+
 Please refer to the relevant documentation or contact the project maintainers for further assistance or to report issues.
