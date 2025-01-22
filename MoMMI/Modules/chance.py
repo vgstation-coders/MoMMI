@@ -81,17 +81,17 @@ The room's power systems are completely off. At the back of the room is a hole i
 
 Everybody roll a dexterity saving throw.
 
-*@MoMMI 1d20+0*
+*<@1161549936173793340> 1d20+0*
 
 *Results: 1 = 1*""")
 
     register_help(__name__, "magic8ball", """Unable to make important project decisions responsibly?
 Need some reliable help from our lord and saviour RNGesus?
 
-Simple, just run @MoMMI magic 'Do I delete the Discord server?' and let NT's latest proven MoMMI Random Number Generator Technology™ decide for you.
+Simple, just run <@1161549936173793340> magic 'Do I delete the Discord server?' and let NT's latest proven MoMMI Random Number Generator Technology™ decide for you.
 
 *Nanotrasen is not liable for any damages caused - material, bodily or psychologically - as a result of poor decision making as a result of the responses from this feature.*""")
 
     register_help(__name__, "pick", """Man can you believe this? People actually want to do *fair* 50/50 picks between things? Kids these days.
 
-Fine, just run @MoMMI pick(a,b,c) with as many comma separated values as you need. Normies.""")
+Fine, just run <@1161549936173793340> pick(a,b,c) with as many comma separated values as you need. Normies.""")

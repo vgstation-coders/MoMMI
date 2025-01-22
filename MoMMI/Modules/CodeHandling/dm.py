@@ -265,7 +265,7 @@ async def load(loop: asyncio.AbstractEventLoop) -> None:
 With the BYOND-Exec 5000™ you too can test BYOND code from the comfort of your Discord client!
 Simply run the following command to be delighted by BYOND's ~~stupid fucking edge cases Lummox why~~ stability and consistency:
 
-@MoMMI \\`\\`\\`
+<@1161549936173793340> \\`\\`\\`
 var/godwhy = .....
 world.log << "[godwhy]"
 \\`\\`\\`

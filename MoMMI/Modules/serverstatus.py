@@ -102,19 +102,19 @@ async def get_status_ss13(address: str, port: int, channel: MChannel, admindata:
 
     if mapname:
         out += f", map is {mapname}"
-    
+
     if station_time:
-        out += f", station time: {station_time}" 
-                           
+        out += f", station time: {station_time}"
+
     if admins is not None:
         out += f", **{admins}** active admins online"
-                           
+
         if afk_admins is not None:
             out += f", **{afk_admins}** AFK admins online."
-    
+
         else:
             out += "."
-    
+
     else:
         out += "."
 
@@ -192,7 +192,7 @@ def decode_packet(packet: bytes) -> Union[float, str]:
 async def status_help(channel: MChannel, message: Message) -> str:
     out = """REEEEE IS THE SERVER DOWN?
 
-The answer is quite simple: ~~yes.~~ just run @MoMMI status <server>.
+The answer is quite simple: ~~yes.~~ just run <@1161549936173793340> status <server>.
 
 On *this Discord server*, you can check status for the following servers: """
 

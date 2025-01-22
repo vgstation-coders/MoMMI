@@ -270,7 +270,7 @@ register_help(__name__, "reminders", f"""For when you're forgetful like me.
 You can set reminders to be reminded of *things* later.
 
 The basic syntax is as follows:
-@MoMMI remind 5m fix that got damn broken Discord bot.
+<@1161549936173793340> remind 5m fix that got damn broken Discord bot.
 where 5m is a time or date specifier, here "in 5 minutes". Anything after that is a handy message you can insult yourself with.
 Time specifiers can be of 3 types:
 * Relative, such as the first example. They work by smashing a number and a unit together, units being w d h m s for week day hour minute and second. You can do stuff like 1d12h.
@@ -282,9 +282,9 @@ Seriously I'm using Python which is supposed to be *batteries included* and I ha
 Tom Scott was right.
 
 MoMMI will confirm when the reminder is gonna be sent (within {LOOP_INTERVAL} second accuracy), as well as giving a UID with a # prefix.
-You can later delete the reminder by doing @MoMMI unremind <UID>, provided you're not too late.
+You can later delete the reminder by doing <@1161549936173793340> unremind <UID>, provided you're not too late.
 
-You can also get a list of all reminders (contents excluded) for you on a server by doing @MoMMI remindlist. This command will also print UIDs.
+You can also get a list of all reminders (contents excluded) for you on a server by doing <@1161549936173793340> remindlist. This command will also print UIDs.
 
-Admins can view reminders for others on the server by doing @MoMMI remindlist @ShitposterAboutToBeBanned. They can also delete reminders for other users. Remember with great power comes great responsability yada yada.
+Admins can view reminders for others on the server by doing <@1161549936173793340> remindlist @ShitposterAboutToBeBanned. They can also delete reminders for other users. Remember with great power comes great responsability yada yada.
 """)

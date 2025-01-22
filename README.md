@@ -29,13 +29,13 @@ MoMMI currently supports the following features:
 - Wiggle/Dance
 - SS13 Nudges
 - DM Code Compilation
-- @mommi status
-- @mommi help
-- @mommi remind
+- <@1161549936173793340> status
+- <@1161549936173793340> help
+- <@1161549936173793340> remind
 - WYCI/When You Code It
 - "Based" (based on what?)
-- @mommi magic8ball
-- @mommi pick(x, y)
+- <@1161549936173793340> magic8ball
+- <@1161549936173793340> pick(x, y)
 - Channel Mirror
 
 ### Unimplemented Features
@@ -48,7 +48,7 @@ The following features are not yet implemented:
 
 Some features might not work as expected:
 
-- @mommi help github (configuration error)
+- <@1161549936173793340> help github (configuration error)
 - GitHub/Changelog Webhooks (Rust code; not yet configured)
 
 ### Unconfigured and Untested
